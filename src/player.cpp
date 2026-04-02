@@ -1,0 +1,41 @@
+#include "player.hpp"
+
+#include <QBrush>
+
+Player::Player() {
+  setRect(0, 0, 30, 60);
+  setBrush(Qt::red);
+  setPos(300, 0);
+
+  setFlag(QGraphicsItem::ItemIsFocusable);
+  setFocus();
+
+  velocityY = 0;
+  onGround = false;
+}
+
+void Player::keyPressEvent(QKeyEvent* event) {
+  if (event->key() == Qt::Key_Left) {
+    moveBy(-10, 0);
+  }
+  if (event->key() == Qt::Key_Right) {
+    moveBy(10, 0);
+  }
+  if (event->key() == Qt::Key_Space && onGround) {
+    velocityY = -15;
+  }
+}
+
+void Player::update() {
+  velocityY += 1;
+  moveBy(0, velocityY);
+
+  QList<QGraphicsItem*> items = collidingItems();
+
+  if (items.size() != 0) {
+    QGraphicsItem* item = items[0];
+    setY(item->y() - boundingRect().height());
+
+    velocityY = 0;
+  }
+}
