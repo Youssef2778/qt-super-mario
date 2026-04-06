@@ -1,11 +1,9 @@
 #include "player.hpp"
-<<<<<<< HEAD
 #include <QMessageBox>
 #include <QBrush>
 #include <QGraphicsScene>
 #include <QApplication>
-=======
->>>>>>> feature/add-player-image
+
 
 Player::Player(QGraphicsItem* parent)
     : QObject(), QGraphicsPixmapItem(parent), velocityY(0), onGround(false) {
