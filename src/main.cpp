@@ -36,6 +36,8 @@ int main(int argc, char* argv[]) {
   view.resize(640, 480);
   view.show();
 
+
+
   QTimer timer;
   QObject::connect(&timer, &QTimer::timeout, &player, &Player::updateState);
   timer.start(33);
